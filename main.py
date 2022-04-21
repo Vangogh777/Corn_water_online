@@ -13,30 +13,33 @@ def main_show():
 @app.route('/node1')
 def node1():
     return render_template("node1.html")
-@app.route('/node1')
-def node1():
-    return render_template("node1.html")
-@app.route('/node1')
-def node1():
-    return render_template("node1.html")
-@app.route('/node1')
-def node1():
-    return render_template("node1.html")
-@app.route('/node1')
-def node1():
-    return render_template("node1.html")
-@app.route('/node1')
-def node1():
-    return render_template("node1.html")
-@app.route('/node1')
-def node1():
-    return render_template("node1.html")
-@app.route('/node1')
-def node1():
-    return render_template("node1.html")
-@app.route('/node1')
-def node1():
-    return render_template("node1.html")
+@app.route('/node2')
+def node2():
+    return render_template("node2.html")
+@app.route('/node3')
+def node3():
+    return render_template("node3.html")
+@app.route('/node4')
+def node4():
+    return render_template("node4.html")
+@app.route('/node5')
+def node5():
+    return render_template("node5.html")
+@app.route('/node6')
+def node6():
+    return render_template("node6.html")
+@app.route('/node7')
+def node7():
+    return render_template("node7.html")
+@app.route('/node8')
+def node8():
+    return render_template("node8.html")
+@app.route('/node9')
+def node9():
+    return render_template("node9.html")
+@app.route('/node10')
+def node10():
+    return render_template("node10.html")
 
 @app.route('/test')
 def test():
