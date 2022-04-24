@@ -43,13 +43,8 @@ def node10():
 
 @app.route('/test')
 def test():
-    return render_template("line-simple.html")
+    return render_template("test.html")
 
-# @app.route('/node1', methods=['GET', 'POST'])
-# def node1():
-#     if request.method == 'POST':
-#         return redirect(url_for('main_show'))
-#     return render_template("node1.html")
 
 
 if __name__ == '__main__':

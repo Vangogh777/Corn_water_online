@@ -8,7 +8,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.3.2/dist/echarts.min.js"></script>
 
   <script src="http://echarts.baidu.com/examples/vendors/echarts/extension/bmap.js"></script>
-  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=SGFHg2e6tXpOKidrLR4Ze8ZzWkOdkcuS"></script>
+   <script type="text/javascript" src="https://api.map.baidu.com/api?v=1.0&&type=webgl&ak=SGFHg2e6tXpOKidrLR4Ze8ZzWkOdkcuS"></script>
   <!--<script   scr="../static/js/echarts"></script>-->
 </head>
 <body>
@@ -216,89 +216,41 @@
     </script>
     <div id="GPS" style="width: 500px;height: 400px;margin:20px;display:inline-block"></div>
     <script type="text/javascript">
-     //利用echarts生成图表
-      var mychart = echarts.init(document.getElementById("GPS"));
-      //指定图表的配置项和数据
-      var option = {
-  title: {
-    text: 'GPS数据显示(暂未成功)'
-  },
-  tooltip: {
-    trigger: 'axis'
-  },
-  legend: {},
-  toolbox: {
-    show: true,
-    feature: {
-      dataZoom: {
-        yAxisIndex: 'none'
-      },
-      dataView: { readOnly: false },
-      magicType: { type: ['line', 'bar'] },
-      restore: {},
-      saveAsImage: {}
-    }
-  },
-  xAxis: {
-    type: 'category',
-    boundaryGap: false,
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-  },
-  yAxis: {
-    type: 'value',
-    axisLabel: {
-      formatter: '{value} °C'
-    }
-  },
-  series: [
-    {
-      name: 'Highest',
-      type: 'line',
-      data: [10, 11, 13, 11, 12, 12, 9],
-      markPoint: {
-        data: [
-          { type: 'max', name: 'Max' },
-          { type: 'min', name: 'Min' }
-        ]
-      },
-      markLine: {
-        data: [{ type: 'average', name: 'Avg' }]
-      }
-    },
-    {
-      name: 'Lowest',
-      type: 'line',
-      data: [1, -2, 2, 5, 3, 2, 0],
-      markPoint: {
-        data: [{ name: '周最低', value: -2, xAxis: 1, yAxis: -1.5 }]
-      },
-      markLine: {
-        data: [
-          { type: 'average', name: 'Avg' },
-          [
-            {
-              symbol: 'none',
-              x: '90%',
-              yAxis: 'max'
-            },
-            {
-              symbol: 'circle',
-              label: {
-                position: 'start',
-                formatter: 'Max'
-              },
-              type: 'max',
-              name: '最高点'
-            }
-          ]
-        ]
-      }
-    }
-  ]
-};
+      var map = new BMapGL.Map("GPS");
 
-      //使用刚指定的配置项和数据显示图表
-      mychart.setOption(option);
+        // 创建地图实例
+
+        var point = new BMapGL.Point(116.35630972743267,40.003548017019924);
+
+        // 创建点坐标
+
+        map.centerAndZoom(point, 15);
+
+        // 初始化地图，设置中心点坐标和地图级别
+
+        map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+
+        // 地图控件
+
+        var scaleCtrl = new BMapGL.ScaleControl();  // 添加比例尺控件
+
+        map.addControl(scaleCtrl);
+
+        var zoomCtrl = new BMapGL.ZoomControl();  // 添加缩放控件
+
+        map.addControl(zoomCtrl);
+
+
+         var marker = new BMapGL.Marker(point); //创建标注
+        map.addOverlay(marker);                 //将标注添加到地图中
+
+        var label = new BMap.label('Test_point',{offset:new BMap.Size(20,-10)});
+        marker.setLabel(label);
+
+
+        var cityCtrl = new BMapGL.CityListControl();  // 添加城市列表控件
+
+        map.addControl(cityCtrl);
 </script>
 
     <div id="wind" style="left:60px;width: 500px;height: 400px;margin:20px;display:inline-block"></div>
